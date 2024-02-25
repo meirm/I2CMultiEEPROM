@@ -27,7 +27,7 @@ To use the I2CMultiEEPROM library in your project, you first need to create an i
 #include <I2CMultiEEPROM.h>
 #define INTERNALEEPROMSIZE 1024
 #define EEPROMSIZE 512 // Example EEPROM sizes in bytes
-#define NRCHIPS 0
+#define NRCHIPS 1
 #define TOTALRAM  EEPROMSIZE * NRCHIPS + INTERNALEEPROMSIZE
 int eepromvector[] = {0x50};
 I2CMultiEEPROM * i2ceeprom;
@@ -36,12 +36,12 @@ void setup() {
   i2ceeprom = I2CMultiEEPROM(1024, 512, eepromSizes); // 1024 bytes of internal EEPROM, 512 bytes external
   Serial.begin(9600);
   // Write data to EEPROM
-  i2ceeprom->XWrite(10, 0xFF); // Write data 0xFF to address 10
+  i2ceeprom->XWrite(1300, 0xFF); // Write data 0xFF to address 10
 }
 
 void loop() {
   // Read data from EEPROM
-  byte data = i2ceeprom->XRead(10); // Read data from address 10
+  byte data = i2ceeprom->XRead(1300); // Read data from address 10
   Serial.println(data, HEX); // Print the data in HEX format
   delay(1000);
 }
